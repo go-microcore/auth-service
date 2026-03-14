@@ -1,0 +1,477 @@
+version: "2"
+
+linters:
+  default: standard
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - containedctx
+    - contextcheck
+    - cyclop
+    - decorder
+    - depguard
+    - dogsled
+    - dupl
+    - dupword
+    - durationcheck
+    - embeddedstructfieldcheck
+    - err113
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - exhaustruct
+    - exptostd
+    - fatcontext
+    - forbidigo
+    - forcetypeassert
+    - funcorder
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecknoglobals
+    - gochecknoinits
+    - gochecksumtype
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godoclint
+    - godot
+    - godox
+    - goheader
+    - gomoddirectives
+    - goprintffuncname
+    - gosec
+    - grouper
+    - iface
+    - inamedparam
+    - interfacebloat
+    - intrange
+    - iotamixing
+    - loggercheck
+    - lll
+    - maintidx
+    - mirror
+    - misspell
+    - mnd
+    - modernize
+    - musttag
+    - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - nlreturn
+    - noctx
+    - nolintlint
+    - nosprintfhostport
+    - paralleltest
+    - perfsprint
+    - prealloc
+    - predeclared
+    - promlinter
+    - protogetter
+    - reassign
+    - recvcheck
+    - revive
+    - sloglint
+    - spancheck
+    - tagalign
+    - tagliatelle
+    - testableexamples
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unqueryvet
+    - usestdlibvars
+    - usetesting
+    - varnamelen
+    - wastedassign
+    - whitespace
+    - wrapcheck
+    - wsl_v5
+  settings:
+    cyclop:
+      # The maximal code complexity to report.
+      max-complexity: 10
+      # The maximal average package complexity.
+      package-average: -1
+    depguard:
+      rules:
+        main:
+          list-mode: strict
+          allow:
+            - $gostd
+            - go.microcore.dev/auth-service
+            - go.microcore.dev/framework
+            - go.microcore.dev/sdk
+            - golang.org/x/term
+            - github.com/spf13/cobra
+            - github.com/go-gormigrate/gormigrate/v2
+            - github.com/golang-jwt/jwt/v5
+            - github.com/lib/pq
+            - gorm.io/gorm
+            - github.com/hashicorp/golang-lru
+            - github.com/google/uuid
+            - github.com/gobwas/glob
+    dupl:
+      threshold: 70
+    embeddedstructfieldcheck:
+      # Checks that there is an empty space between the embedded fields and regular fields.
+      empty-line: false
+      # Checks that sync.Mutex and sync.RWMutex are not used as embedded fields.
+      forbid-mutex: true
+    errcheck:
+      # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
+      check-type-assertions: true
+      # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`.
+      check-blank: true
+      # List of functions to exclude from checking, where each entry is a single function to exclude.
+      exclude-functions:
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).Write
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteWithStatusCode
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteString
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteStringWithStatusCode
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteJson
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteJsonWithStatusCode
+        - (*go.microcore.dev/framework/transport/http/server.RequestContext).WriteError
+      # Display function signature instead of selector.
+      verbose: true
+    exhaustive:
+      # Switch statement requires default case even if exhaustive.
+      default-case-required: true
+    exhaustruct:
+      # List of regular expressions to match type names that should be excluded from processing.
+      # Anonymous structs can be matched by '<anonymous>' alias.
+      # Has precedence over `include`.
+      # Each regular expression must match the full type name, including package path.
+      exclude:
+        - '.+/cobra\.Command$'
+        - '^github\.com/golang-jwt/jwt/v5\.RegisteredClaims$'
+        - '.+/model\..+$'
+      # Allows empty structures, effectively excluding them from the check.
+      allow-empty: true
+      # Allows empty structures in variable declarations.
+      allow-empty-declarations: true
+    fatcontext:
+      # Check for potential fat contexts in struct pointers.
+      check-struct-pointers: true
+    forbidigo:
+      # Forbid the following identifiers (list of regexp).
+      forbid:
+        - pattern: ^print(ln)?$
+        - pattern: ^fmt\.Print.*$
+          msg: Do not commit print statements.
+      # Exclude godoc examples from forbidigo checks.
+      exclude-godoc-examples: false
+      # Instead of matching the literal source code,
+      # use type information to replace expressions with strings that contain the package name
+      # and (for methods and fields) the type name.
+      # This makes it possible to handle import renaming and forbid struct fields and methods.
+      analyze-types: true
+    funlen:
+      # Checks the number of lines in a function.
+      lines: 60
+      # Checks the number of statements in a function.
+      statements: 40
+      # Ignore comments when counting lines.
+      ignore-comments: true
+    gochecksumtype:
+      # Presence of `default` case in switch statements satisfies exhaustiveness, if all members are not listed.
+      default-signifies-exhaustive: false
+      # Include shared interfaces in the exhaustiveness check.
+      include-shared-interfaces: true
+    gocognit:
+      # Minimal code complexity to report.
+      min-complexity: 20
+    goconst:
+      # Minimum occurrences of constant string count to trigger issue.
+      min-occurrences: 3
+      # Search also for duplicated numbers.
+      numbers: true
+      # Ignore when constant is not used as function argument.
+      ignore-calls: true
+    gosec:
+      excludes:
+        - G104
+    gocritic:
+      enable-all: true
+    godoclint:
+      # Default set of rules to enable.
+      default: all
+      disable:
+        - max-len
+    godot:
+      # Comments to be checked: `declarations`, `toplevel`, `noinline` or `all`.
+      scope: declarations
+      # List of regexps for excluding particular comment lines from check.
+      exclude:
+        - "^ @"
+        - "^ (Default|Config|Responses|Requests|Data|Results)$"
+    goheader:
+      values:
+        const:
+          COMPANY: Microcore (https://microcore.dev)
+          LICENSE: MIT License
+        regexp:
+          YEAR: \d{4}
+      template: |-
+        Copyright (c) {{ YEAR }} {{ COMPANY }}
+        Licensed under the {{ LICENSE }}. See LICENSE file for details.
+    gomoddirectives:
+      # Allow to not explain why the version has been retracted in the `retract` directives.
+      retract-allow-no-explanation: true
+      # Forbid the use of the `exclude` directives.
+      exclude-forbidden: true
+      # Forbid the use of the `ignore` directives (>= go1.25).
+      ignore-forbidden: true
+      # Forbid the use of the `toolchain` directive.
+      toolchain-forbidden: true
+      # Forbid the use of the `godebug` directive.
+      go-debug-forbidden: true
+      # Defines a pattern to validate `go` minimum version directive.
+      go-version-pattern: '\d\.\d+(\.0)?'
+      # Check the validity of the module path.
+      check-module-path: true
+    govet:
+      # Enable all analyzers.
+      enable-all: true
+      disable:
+        - shadow
+        - fieldalignment
+    grouper:
+      # Require the use of a single global 'const' declaration only.
+      const-require-single-const: true
+      # Require the use of grouped global 'const' declarations.
+      const-require-grouping: true
+      # Require the use of a single 'import' declaration only.
+      import-require-single-import: true
+      # Require the use of grouped 'import' declarations.
+      import-require-grouping: true
+      # Require the use of a single global 'type' declaration only.
+      type-require-single-type: true
+      # Require the use of grouped global 'type' declarations.
+      type-require-grouping: true
+      # Require the use of a single global 'var' declaration only.
+      var-require-single-var: false
+      # Require the use of grouped global 'var' declarations.
+      var-require-grouping: false
+    iface:
+      # List of analyzers.
+      enable:
+        - identical # Identifies interfaces in the same package that have identical method sets.
+        - opaque # Identifies functions that return interfaces, but the actual returned value is always a single concrete implementation.
+        - unexported # Identifies interfaces that are not exported but are used in exported functions or methods.
+    interfacebloat:
+      # The maximum number of methods allowed for an interface.
+      max: 14
+    iotamixing:
+      # Whether to report individual consts rather than just the const block.
+      report-individual: true
+    loggercheck:
+      # Allow check for the github.com/go-kit/log library.
+      kitlog: false
+      # Allow check for the k8s.io/klog/v2 library.
+      klog: false
+      # Allow check for the github.com/go-logr/logr library.
+      logr: false
+      # Allow check for the log/slog library.
+      slog: true
+      # Allow check for the "sugar logger" from go.uber.org/zap library.
+      zap: false
+      # Require all logging keys to be inlined constant strings.
+      require-string-key: true
+      # Require printf-like format specifier (%s, %d for example) not present.
+      no-printf-like: true
+    maintidx:
+      # Show functions with maintainability index lower than N.
+      # A high index indicates better maintainability (it's kind of the opposite of complexity).
+      under: 20
+    misspell:
+      locale: US
+    nakedret:
+      # Make an issue if func has more lines of code than this setting, and it has naked returns.
+      max-func-lines: 15
+    nestif:
+      # Minimal complexity of if statements to report.
+      min-complexity: 5
+    nilnil:
+      # To check functions with only two return values (`return nil, nil`).
+      # If disabled then returns like `return nil, nil, ..., nil` are supported.
+      only-two: false
+      # In addition, detect opposite situation (simultaneous return of non-nil error and valid value).
+      # E.g, `return clone, fh.indexer.Update(clone)` will be considered as invalid.
+      detect-opposite: true
+    nlreturn:
+      # Size of the block (including return statement that is still "OK"),
+      # so no return split required.
+      block-size: 2
+    nolintlint:
+      # Enable to require an explanation of nonzero length after each nolint directive.
+      require-explanation: true
+      # Enable to require nolint directives to mention the specific linter being suppressed.
+      require-specific: true
+    perfsprint:
+      # Optimizes into `err.Error()` even if it is only equivalent for non-nil errors.
+      err-error: true
+    predeclared:
+      # Include method names and field names in checks.
+      qualified-name: true
+    revive:
+      severity: error
+      enable-all-rules: true
+      rules:
+        - name: cognitive-complexity
+          disabled: true
+        - name: cyclomatic
+          disabled: true
+        - name: unused-parameter
+          disabled: true
+        - name: unused-receiver
+          disabled: true
+        - name: max-control-nesting
+          disabled: true
+        - name: function-length
+          disabled: true
+        - name: bare-return
+          disabled: true
+        - name: exported
+          disabled: true
+        - name: add-constant
+          disabled: true
+        - name: max-public-structs
+          disabled: true
+        - name: line-length-limit
+          disabled: true
+        - name: comments-density
+          disabled: true
+        - name: struct-tag
+          disabled: true
+        - name: unsecure-url-scheme
+          disabled: true
+        - name: package-naming
+          disabled: true
+    sloglint:
+      # Enforce using attributes only (overrides no-mixed-args, incompatible with kv-only).
+      attr-only: true
+      # Enforce not using global loggers.
+      no-global: "all"
+      # Enforce using methods that accept a context.
+      context: "all"
+      # Enforce using static values for log messages.
+      static-msg: false
+      # Enforce key naming convention.
+      key-naming-case: snake
+      # Enforce putting arguments on separate lines.
+      args-on-sep-lines: true
+    spancheck:
+      # Checks to enable.
+      # Options include:
+      # - `end`: check that `span.End()` is called
+      # - `record-error`: check that `span.RecordError(err)` is called when an error is returned
+      # - `set-status`: check that `span.SetStatus(codes.Error, msg)` is called when an error is returned
+      checks:
+        - end
+        - record-error
+        - set-status
+    unparam:
+      # Inspect exported functions.
+      # Set to true if no external program/library imports your code.
+      check-exported: true
+    unused:
+      # Mark all struct fields that have been written to as used.
+      field-writes-are-uses: true
+      # Treat IncDec statement (e.g. `i++` or `i--`) as both read and write operation instead of just write.
+      post-statements-are-reads: true
+      # Mark all exported fields as used.
+      exported-fields-are-used: false
+      # Mark all function parameters as used.
+      parameters-are-used: true
+      # Mark all local variables as used.
+      local-variables-are-used: false
+      # Mark all identifiers inside generated files as used.
+      generated-is-used: false
+    varnamelen:
+      max-distance: 6
+      ignore-names:
+        - id
+      ignore-decls:
+        - c *server.RequestContext
+        - e error
+        - i int
+        - j int
+        - T any
+        - m map[string]int
+        - f *os.File
+    wrapcheck:
+      # An array of strings that specify substrings of signatures to ignore.
+      # If this set, it will override the default set of ignored signatures.
+      extra-ignore-sigs:
+        - .NewExitReason(
+    wsl_v5:
+      # If a block contains more than this number of lines,
+      # the branch statement needs to be separated by whitespace.
+      branch-max-lines: 4
+      # If set to a non-negative number,
+      # case blocks need to end with whitespace if exceeding this number
+      case-max-lines: 2
+      # Default checks to use.
+      default: all
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - revive
+          - cyclop
+          - dupl
+          - funlen
+          - maintidx
+          - varnamelen
+        path: internal/migrations/.*
+      - linters:
+          - depguard
+          - dupl
+          - gosec
+          - funlen
+          - godoclint
+          - maintidx
+          - errcheck
+          - varnamelen
+        path: _test.go$
+      - linters:
+          - revive
+        path: _test.go$
+        text: function-length
+      - linters:
+          - revive
+          - lll
+        source: ^//\s*@
+    paths:
+      - .*_gen.go
+      - mocks.go
+      - docs
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gofmt:
+      simplify: true
+  exclusions:
+    generated: lax
+    paths:
+      - .*_gen.go
+      - mocks.go
+      - docs
+
+run:
+  concurrency: 4
+  modules-download-mode: readonly
+  tests: true
+  timeout: 1m

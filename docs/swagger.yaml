@@ -1,0 +1,1190 @@
+basePath: /
+definitions:
+  http._UpdateHTTPRuleRequest:
+    properties:
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        type: string
+      roleId:
+        type: integer
+    type: object
+  http._UpdateRoleRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  http.Auth2FARequest:
+    properties:
+      device:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+      ttl:
+        type: string
+      user:
+        type: integer
+    type: object
+  http.Auth2FAResponse:
+    properties:
+      access:
+        type: string
+      refresh:
+        type: string
+    type: object
+  http.AuthRequest:
+    properties:
+      device:
+        type: string
+      metaBrowserName:
+        type: string
+      metaBrowserVersion:
+        type: string
+      metaEngineName:
+        type: string
+      metaEngineVersion:
+        type: string
+      metaIp:
+        type: string
+      metaLocation:
+        type: string
+      metaModel:
+        type: string
+      metaOsFullName:
+        type: string
+      metaOsName:
+        type: string
+      metaOsVersion:
+        type: string
+      metaPlatform:
+        type: string
+      metaUserAgent:
+        type: string
+      mfa:
+        type: boolean
+      roles:
+        items:
+          type: string
+        type: array
+      ttl:
+        type: string
+      user:
+        type: integer
+    type: object
+  http.AuthResponse:
+    properties:
+      access:
+        type: string
+      mfa:
+        type: boolean
+      newDevice:
+        type: boolean
+      refresh:
+        type: string
+    type: object
+  http.CreateHTTPRuleRequest:
+    properties:
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        type: string
+      roleId:
+        type: string
+    type: object
+  http.CreateHTTPRuleResponse:
+    properties:
+      created:
+        type: string
+      id:
+        type: integer
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        type: string
+      roleId:
+        type: string
+      updated:
+        type: string
+    type: object
+  http.CreateRoleRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      serviceFlag:
+        type: boolean
+      systemFlag:
+        type: boolean
+    type: object
+  http.CreateRoleResponse:
+    properties:
+      created:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      serviceFlag:
+        type: boolean
+      systemFlag:
+        type: boolean
+      updated:
+        type: string
+    type: object
+  http.CreateStaticAccessTokenRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+    type: object
+  http.CreateStaticAccessTokenResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  http.DeviceResponse:
+    properties:
+      id:
+        type: string
+      session:
+        $ref: '#/definitions/http.SessionResponse'
+    type: object
+  http.FilterHTTPRulesRequest:
+    properties:
+      id:
+        items:
+          type: integer
+        type: array
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        items:
+          type: string
+        type: array
+      roleId:
+        items:
+          type: string
+        type: array
+    type: object
+  http.FilterHTTPRulesResponse:
+    properties:
+      created:
+        type: string
+      id:
+        type: integer
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        type: string
+      roleId:
+        type: string
+      updated:
+        type: string
+    type: object
+  http.FilterRolesRequest:
+    properties:
+      id:
+        items:
+          type: string
+        type: array
+      name:
+        items:
+          type: string
+        type: array
+      serviceFlag:
+        type: boolean
+      systemFlag:
+        type: boolean
+    type: object
+  http.FilterRolesResponse:
+    properties:
+      created:
+        type: string
+      description:
+        type: string
+      httpRules:
+        items:
+          $ref: '#/definitions/http.HTTPRuleResponse'
+        type: array
+      id:
+        type: string
+      name:
+        type: string
+      serviceFlag:
+        type: boolean
+      systemFlag:
+        type: boolean
+      updated:
+        type: string
+    type: object
+  http.FilterStaticAccessTokenRequest:
+    properties:
+      id:
+        items:
+          type: string
+        type: array
+    type: object
+  http.FilterStaticAccessTokenResponse:
+    properties:
+      created:
+        type: string
+      description:
+        type: string
+      device:
+        type: string
+      id:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+      token:
+        type: string
+      userId:
+        type: integer
+    type: object
+  http.HTTPRuleResponse:
+    properties:
+      created:
+        type: string
+      id:
+        type: integer
+      methods:
+        items:
+          type: string
+        type: array
+      mfa:
+        type: boolean
+      path:
+        type: string
+      roleId:
+        type: string
+      updated:
+        type: string
+    type: object
+  http.LogoutDeviceRequest:
+    properties:
+      device:
+        type: string
+    type: object
+  http.SessionResponse:
+    properties:
+      browserName:
+        type: string
+      browserVersion:
+        type: string
+      engineName:
+        type: string
+      engineVersion:
+        type: string
+      ip:
+        type: string
+      issuedAt:
+        type: string
+      location:
+        type: string
+      model:
+        type: string
+      osFullName:
+        type: string
+      osName:
+        type: string
+      osVersion:
+        type: string
+      platform:
+        type: string
+      userAgent:
+        type: string
+    type: object
+  http.TokenAuthorizeHTTPAuthResponse:
+    properties:
+      mfa:
+        type: boolean
+    type: object
+  http.TokenAuthorizeHTTPDataResponse:
+    properties:
+      audience:
+        items:
+          type: string
+        type: array
+      device:
+        type: string
+      expires:
+        type: integer
+      id:
+        type: string
+      issued:
+        type: integer
+      issuer:
+        type: string
+      mfa:
+        type: boolean
+      roles:
+        items:
+          type: string
+        type: array
+      user:
+        type: integer
+    type: object
+  http.TokenAuthorizeHTTPRequest:
+    properties:
+      method:
+        type: string
+      path:
+        type: string
+    type: object
+  http.TokenAuthorizeHTTPResponse:
+    properties:
+      auth:
+        $ref: '#/definitions/http.TokenAuthorizeHTTPAuthResponse'
+      token:
+        $ref: '#/definitions/http.TokenAuthorizeHTTPDataResponse'
+    type: object
+  http.TokenRenewRequest:
+    properties:
+      refreshToken:
+        type: string
+    type: object
+  http.TokenRenewResponse:
+    properties:
+      accessToken:
+        type: string
+      mfaRequired:
+        type: boolean
+      refreshToken:
+        type: string
+    type: object
+  http.TokenValidateResponse:
+    properties:
+      audience:
+        items:
+          type: string
+        type: array
+      device:
+        type: string
+      expires:
+        type: integer
+      id:
+        type: string
+      issued:
+        type: integer
+      issuer:
+        type: string
+      mfa:
+        type: boolean
+      roles:
+        items:
+          type: string
+        type: array
+      user:
+        type: integer
+    type: object
+  server.ErrResponse:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: auth-service
+  version: "1.0"
+paths:
+  /auth/devices:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.DeviceResponse'
+            type: array
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Returns a list of user's active devices.
+      tags:
+      - Devices
+  /auth/logout/:
+    post:
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Terminate the current session on user device.
+      tags:
+      - Logout
+  /auth/logout/all:
+    post:
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Terminate all active sessions for a user across all devices.
+      tags:
+      - Logout
+  /auth/logout/device:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.LogoutDeviceRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_DEVICE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Terminate the session on a selected user device.
+      tags:
+      - Logout
+  /auth/roles/:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.CreateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/http.CreateRoleResponse'
+        "400":
+          description: 'Possible codes: INVALID_ROLE_ID, INVALID_ROLE_NAME, INVALID_ROLE_DESCRIPTION,
+            ROLE_EXIST_ID'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Creates a new role.
+      tags:
+      - Roles
+  /auth/roles/{id}:
+    delete:
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_ROLE_ID'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "404":
+          description: 'Possible codes: ROLE_NOT_FOUND'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Deletes a role by ID.
+      tags:
+      - Roles
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http._UpdateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_ROLE_ID, INVALID_ROLE_NAME, INVALID_ROLE_DESCRIPTION'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "404":
+          description: 'Possible codes: ROLE_NOT_FOUND'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Updates role data by ID.
+      tags:
+      - Roles
+  /auth/roles/filter:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.FilterRolesRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.FilterRolesResponse'
+            type: array
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Returns roles matching the filter criteria.
+      tags:
+      - Roles
+  /auth/rules/http/:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.CreateHTTPRuleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/http.CreateHTTPRuleResponse'
+        "400":
+          description: 'Possible codes: INVALID_ROLE_ID, INVALID_PATH, INVALID_METHODS,
+            RULE_EXIST'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Creates a new HTTP rule.
+      tags:
+      - Rules (HTTP)
+  /auth/rules/http/{id}:
+    delete:
+      parameters:
+      - description: Rule ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_ID'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "404":
+          description: 'Possible codes: RULE_NOT_FOUND'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Deletes an HTTP rule by ID.
+      tags:
+      - Rules (HTTP)
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Rule ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http._UpdateHTTPRuleRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_ID, INVALID_ROLE_ID, INVALID_PATH,
+            INVALID_METHODS, INVALID_MFA'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "404":
+          description: 'Possible codes: RULE_NOT_FOUND'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Updates an HTTP rule by ID.
+      tags:
+      - Rules (HTTP)
+  /auth/rules/http/filter:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.FilterHTTPRulesRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.FilterHTTPRulesResponse'
+            type: array
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Returns HTTP rules matching the filter criteria.
+      tags:
+      - Rules (HTTP)
+  /auth/tokens/:
+    post:
+      consumes:
+      - application/octet-stream
+      parameters:
+      - description: 'BINARY DATA REQUIRED: Encrypt this JSON structure using AES-256-GCM
+          with AUTH_KEY before sending'
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.AuthRequest'
+      produces:
+      - application/octet-stream
+      - application/json
+      responses:
+        "200":
+          description: Returns encrypted binary. Decrypt using AES-256-GCM with AUTH_KEY
+            to get this JSON structure.
+          schema:
+            $ref: '#/definitions/http.AuthResponse'
+        "400":
+          description: 'Possible codes: INVALID_AUTH_REQUEST'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      summary: Issues JWT tokens.
+      tags:
+      - Tokens
+  /auth/tokens/2fa:
+    post:
+      consumes:
+      - application/octet-stream
+      parameters:
+      - description: 'BINARY DATA REQUIRED: Encrypt this JSON structure using AES-256-GCM
+          with AUTH_KEY before sending'
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.Auth2FARequest'
+      produces:
+      - application/octet-stream
+      - application/json
+      responses:
+        "200":
+          description: Returns encrypted binary. Decrypt using AES-256-GCM with AUTH_KEY
+            to get this JSON structure.
+          schema:
+            $ref: '#/definitions/http.Auth2FAResponse'
+        "400":
+          description: 'Possible codes: INVALID_AUTH_REQUEST'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      summary: Issues JWT tokens after successful 2FA.
+      tags:
+      - Tokens
+  /auth/tokens/authorize/http:
+    post:
+      consumes:
+      - application/json
+      description: Parsing, validation and authorize of the access token. Mainly used
+        in the authorization mechanism across various microservices.
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.TokenAuthorizeHTTPRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.TokenAuthorizeHTTPResponse'
+        "400":
+          description: 'Possible codes: INVALID_PATH, INVALID_METHOD'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Checks HTTP authorization for given access token.
+      tags:
+      - Tokens
+  /auth/tokens/renew:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.TokenRenewRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.TokenRenewResponse'
+        "400":
+          description: 'Possible codes: INVALID_TOKEN, TOKEN_ALREADY_USED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      summary: Renews JWT tokens based on a refresh token.
+      tags:
+      - Tokens
+  /auth/tokens/static/:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.CreateStaticAccessTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/http.CreateStaticAccessTokenResponse'
+        "400":
+          description: 'Possible codes: INVALID_ID, INVALID_ROLES, INVALID_DESCRIPTION,
+            STATIC_TOKEN_EXIST'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Creates a static access token.
+      tags:
+      - Static tokens
+  /auth/tokens/static/{id}:
+    delete:
+      parameters:
+      - description: Token ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: 'Possible codes: INVALID_ID'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "404":
+          description: 'Possible codes: INVALID_ID, STATIC_TOKEN_NOT_FOUND'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Deletes a static access token by ID.
+      tags:
+      - Static tokens
+  /auth/tokens/static/filter:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.FilterStaticAccessTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.FilterStaticAccessTokenResponse'
+            type: array
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "415":
+          description: 'Possible codes: INVALID_JSON_BODY'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Filters static access tokens.
+      tags:
+      - Static tokens
+  /auth/tokens/validate:
+    get:
+      description: Parsing and validation of the access token. Mainly used in the
+        authorization mechanism across various microservices.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.TokenValidateResponse'
+        "401":
+          description: 'Possible codes: INVALID_TOKEN, 2FA_REQUIRED'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "403":
+          description: 'Possible codes: INSUFFICIENT_PERMISSIONS'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+        "503":
+          description: 'Possible codes: SERVICE_UNAVAILABLE'
+          schema:
+            $ref: '#/definitions/server.ErrResponse'
+      security:
+      - BearerAuth: []
+      summary: Validates an access token.
+      tags:
+      - Tokens
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

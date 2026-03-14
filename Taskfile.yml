@@ -1,0 +1,111 @@
+version: '3'
+
+vars:
+  CLI_PACKAGE: go.microcore.dev/auth-service/cmd/cli
+  VERSION: 
+    sh: git describe --tags --always --dirty
+  COMMIT: 
+    sh: git rev-parse --short HEAD
+  DATE: 
+    sh: date -u +%Y-%m-%dT%H:%M:%SZ
+
+  BOOTSTRAP_ENV: .env.bootstrap
+  BOOTSTRAP_CMD: ./cmd bootstrap
+
+  MIGRATE_ENV: .env.migrate
+  MIGRATE_CMD: ./cmd migrate
+
+  SEED_ENV: .env.seed
+  SEED_CMD: ./cmd seed
+
+  SERVER_ENV: .env.server
+  SERVER_CMD: ./cmd server
+
+  DOCKER_IMAGE: microcorelab/auth-service
+  DOCKER_TAG: '{{.VERSION}}'
+
+tasks:
+  default:
+    desc: Run server
+    cmds:
+      - task: server
+
+  build:
+    desc: Build binary with version metadata
+    summary: |
+      Builds the binary for a specific OS and Arch.
+      Injects version, commit hash, and build date into the binary.
+    cmds:
+      - |
+        CGO_ENABLED=0 \
+        GOOS={{.BUILD_OS | default OS}} \
+        GOARCH={{.BUILD_ARCH | default ARCH}} \
+        go build -trimpath \
+        -ldflags "-s -w \
+          -X '{{.CLI_PACKAGE}}.Version={{.VERSION}}' \
+          -X '{{.CLI_PACKAGE}}.Commit={{.COMMIT}}' \
+          -X '{{.CLI_PACKAGE}}.BuildDate={{.DATE}}'" \
+        -o ./bin/auth-service_{{.BUILD_OS | default OS}}_{{.BUILD_ARCH | default ARCH}} \
+        ./cmd
+
+  clean:
+    desc: Delete bin/
+    cmds:
+      - rm -rf bin/
+
+  bootstrap:
+    desc: Run bootstrap
+    dotenv: ['{{.BOOTSTRAP_ENV}}']
+    cmds:
+      - go run {{.BOOTSTRAP_CMD}}
+
+  migrate:
+    desc: Run migrate
+    dotenv: ['{{.MIGRATE_ENV}}']
+    cmds:
+      - go run {{.MIGRATE_CMD}}
+  
+  seed:
+    desc: Run seed
+    dotenv: ['{{.SEED_ENV}}']
+    cmds:
+      - go run {{.SEED_CMD}}
+
+  server:
+    desc: Run server
+    dotenv: ['{{.SERVER_ENV}}']
+    cmds:
+      - go run {{.SERVER_CMD}}
+
+  env:
+    desc: Create .env files
+    cmds:
+      - cp example.env.bootstrap {{.BOOTSTRAP_ENV}}
+      - cp example.env.migrate {{.MIGRATE_ENV}}
+      - cp example.env.seed {{.SEED_ENV}}
+      - cp example.env.server {{.SERVER_ENV}}
+
+  wire:
+    desc: Gen wire
+    cmds:
+      - go tool wire ./...
+
+  mock:
+    desc: Gen mocks
+    cmds:
+      - go tool mockery
+
+  lint:
+    desc: Run golangci-lint
+    cmds:
+      - go tool golangci-lint run --timeout=5m
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test -v -race -timeout 5m ./...
+
+  docs:
+    desc: Generate Swagger docs
+    cmds:
+      - go tool swag init -g server.go -d internal/app/server,internal/adapter/handler --parseDependency
